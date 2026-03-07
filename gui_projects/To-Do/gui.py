@@ -1,21 +1,6 @@
 import functions
 import FreeSimpleGUI as sg
 import time
-import os
-
-FILE = "todos.txt"
-if not os.path.exists(FILE):
-    with open(FILE, 'w') as f:
-        pass
-
-def read_todos_clean():
-    """Return todos without trailing newlines for GUI display and matching."""
-    return [todo.strip() for todo in functions.get_todo() if todo.strip()]
-
-
-def write_todos_clean(todos):
-    """Persist GUI todos back to file with newline delimiters."""
-    functions.write_todo([f"{todo}\n" for todo in todos])
 
 sg.theme("DarkPurple4")
 
@@ -25,7 +10,7 @@ label = sg.Text("Type in a to-do")
 input_box = sg.InputText(tooltip="Enter todo", key="todo")
 # add_button = sg.Button(image_source="./images/add.png", mouseover_colors="Green", key="Add")
 add_button = sg.Button("Add", mouseover_colors="Green", key="Add")
-list_box = sg.Listbox(values=read_todos_clean(), key="todos", 
+list_box = sg.Listbox(values=functions.get_todo(), key="todos", 
                       enable_events=True, size=[45, 10])
 
 edit_button = sg.Button("Edit", button_color="Blue")
@@ -49,7 +34,7 @@ while True:
     
     match event:
         case "Add":
-            todos = read_todos_clean()
+            todos = functions.get_todo()
             new_todo = values['todo'].strip()
 
             if not new_todo:
@@ -57,7 +42,7 @@ while True:
                 continue
 
             todos.append(new_todo)
-            write_todos_clean(todos)
+            functions.write_todo(todos)
             window['todos'].update(values=todos)
             window['todo'].update(value="")
         
@@ -71,10 +56,10 @@ while True:
                     sg.popup("Edited to-do cannot be empty", font=('Helvetica', 17))
                     continue
                 
-                todos = read_todos_clean()
+                todos = functions.get_todo()
                 index = todos.index(todo_to_edit)  
                 todos[index] = new_todo
-                write_todos_clean(todos)
+                functions.write_todo(todos)
                 window['todos'].update(values=todos)
                 window['todo'].update(value="")
             except IndexError:
@@ -86,10 +71,10 @@ while True:
             try:
                 todo_to_remove = values['todos'][0]
                 
-                todos = read_todos_clean()
+                todos = functions.get_todo()
                 todos.remove(todo_to_remove)
                 
-                write_todos_clean(todos)
+                functions.write_todo(todos)
                 window['todos'].update(values=todos)
                 window['todo'].update(value="")
             except IndexError:

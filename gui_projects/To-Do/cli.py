@@ -10,17 +10,21 @@ while True:
     user_actions = input("Type add or show or edit or complete or exit: ").strip()
 
     if user_actions.startswith("add"):
-        todo = user_actions[4:]
+        todo = user_actions[4:].strip()
+
+        if not todo:
+            print("Todo cannot be empty")
+            continue
         
         todos = get_todo()
-        todos.append(todo + '\n')
+        todos.append(todo)
         
         write_todo(todos)
         
     elif user_actions.startswith("show"):
         todos = get_todo()
         for index, item in enumerate(todos):
-            print(f"{index+1}-{item.strip('\n')}")
+            print(f"{index+1}-{item}")
                 
     elif user_actions.startswith("edit"):
         try:
@@ -30,7 +34,12 @@ while True:
             todos = get_todo()
             print(f"Item to edit: {todos[number]}")
             new_todo = input("Enter new todo: ").strip()
-            todos[number] = new_todo + "\n"
+
+            if not new_todo:
+                print("Todo cannot be empty")
+                continue
+
+            todos[number] = new_todo
             
             write_todo(todos)
         except ValueError:
@@ -52,7 +61,7 @@ while True:
                 todos.pop(number-1)
                 
                 write_todo(todos)
-                print(f"Todo {todo_to_remove.strip('\n')} was removed from list..")
+                print(f"Todo {todo_to_remove} was removed from list..")
         except IndexError:
             print("There's no item with that number..")
         
