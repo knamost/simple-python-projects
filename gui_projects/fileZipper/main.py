@@ -10,7 +10,7 @@ input2 = sg.Input(key="folderpath")
 button2 = sg.FolderBrowse("Choose", key="folderpath")
 
 compress_button = sg.Button('Compress')
-output_label = sg.Text(key="result_message", text_color="green")
+output_label = sg.Text(key="result_message", text_color="Blue")
 
 
 window = sg.Window("File Compressor", 
