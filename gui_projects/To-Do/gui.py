@@ -16,6 +16,7 @@ window = sg.Window('My To-Do App',
                    layout=[[label], [input_box, add_button], [list_box, edit_button]], 
                    font=('Helvetica', 17))
 
+
 while True:
     event, values = window.read()
     print(event)
@@ -31,6 +32,7 @@ while True:
             functions.write_todo(todos)
             window['todos'].update(values=todos)
         
+        
         case "Edit":
             todo_to_edit = values['todos'][0]
             new_todo = values['todo']
@@ -45,10 +47,8 @@ while True:
             window['todo'].update(value=values['todos'][0])
             
         
-        
         case sg.WIN_CLOSED:
             break    
-
 
 
 window.close()
