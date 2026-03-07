@@ -1,2 +1,0 @@
-write git project
-finish class works

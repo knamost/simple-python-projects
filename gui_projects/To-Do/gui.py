@@ -1,6 +1,12 @@
 import functions
 import FreeSimpleGUI as sg
 import time
+import os
+
+FILE = "todos.txt"
+if not os.path.exists(FILE):
+    with open(FILE, 'w') as f:
+        pass
 
 def read_todos_clean():
     """Return todos without trailing newlines for GUI display and matching."""
@@ -17,13 +23,14 @@ clock = sg.Text('', key='current_time')
 
 label = sg.Text("Type in a to-do")
 input_box = sg.InputText(tooltip="Enter todo", key="todo")
-add_button = sg.Button(image_source="./images/add.png", mouseover_colors="Green", key="Add")
-
+# add_button = sg.Button(image_source="./images/add.png", mouseover_colors="Green", key="Add")
+add_button = sg.Button("Add", mouseover_colors="Green", key="Add")
 list_box = sg.Listbox(values=read_todos_clean(), key="todos", 
                       enable_events=True, size=[45, 10])
 
 edit_button = sg.Button("Edit", button_color="Blue")
-complete_button = sg.Button(size=10, image_source="./images/complete.png", key="Complete")
+# complete_button = sg.Button(size=10, image_source="./images/complete.png", key="Complete")
+complete_button = sg.Button("Complete", key="Complete")
 exit_button = sg.Button("Exit", button_color="Red")
 
 window = sg.Window('My To-Do App', 

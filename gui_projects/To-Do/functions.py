@@ -1,4 +1,4 @@
-FILENAME = 'todos_item.txt'
+FILENAME = 'todos.txt'
 
 def get_todo(filepath=FILENAME):
     """Read a text file and return the list of to-do items."""
