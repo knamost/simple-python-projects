@@ -1,4 +1,2 @@
 write git project
-complete subject projects
 finish class works
-finish webdev project
