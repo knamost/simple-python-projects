@@ -1,0 +1,22 @@
+[
+  {
+    "title": "dhurandhar",
+    "genre": "action",
+    "rating": 8.0
+  },
+  {
+    "title": "kgf",
+    "genre": "mass action",
+    "rating": 10.0
+  },
+  {
+    "title": "baacha chor",
+    "genre": "action, comedy",
+    "rating": 5.0
+  },
+  {
+    "title": "bibek",
+    "genre": "bhadwa",
+    "rating": 3.0
+  }
+]
